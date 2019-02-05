@@ -2,14 +2,60 @@
 <html>
     <head>
         <script>
-            function playRound(playerSelection, computerSelection) {
-	        
-            }
 
-            const playerSelection = 'rock'
-            const computerSelection = computerPlay()
+            
+        const games = 5;
+        let playerScore = 0;
+        let compScore = 0;
+        for(let i = 0; i < games; i++){                      
+            let playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+            function computerPlay() { return (["paper","scissors","rock"])[Math.random() * 3 | 0]; }
+            let computerSelection = computerPlay();
+            
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection == "rock") {
+                    if (computerSelection == "scissors"){
+                        playerScore++;
+                        console.log("Rock beats Scissors! Rock on!");
+                    } else if (computerSelection == "paper") {
+                        compScore++;
+                        console.log("Paper beats Rock! You suck!");
+                    } else {
+                        console.log("Rock vs Rock! It's a tie!");
+                    }
+                }   
+                if (playerSelection == "paper") {
+                    if (computerSelection == "scissors"){
+                        compScore++;
+                        console.log("Scissors beats Paper, Darn!");
+                    } else if (computerSelection == "rock") {
+                        playerScore++;
+                        console.log("Paper beats Rock! You got this covered!");
+                    } else {
+                        console.log("Paper vs Paper! It's a tie!");
+                    }
+                }
+                if (playerSelection == "scissors") {
+                    if (computerSelection == "rock"){
+                        compScore++;
+                        console.log("Rock beats Scissors, You got smashed!");
+                    } else if (computerSelection == "paper") {
+                        playerScore++;
+                        console.log("Scissors beats Paper! Stay Sharp!");
+                    } else {
+                        console.log("Scissors vs Scissors! It's a tie!");
+                    }
+                }                  
+            }  
             console.log(playRound(playerSelection, computerSelection))
-        
+        }
+        if(playerScore > compScore){
+                console.log("Congratulations! You beat the computer " + playerScore + " to " + compScore);
+            } else if(playerScore < compScore){
+                console.log("Sorry! You lost to the computer " + compScore + " to " + playerScore);
+            } else {
+                console.log("Hey you tied..." + compScore + " to " + playerScore);
+            }
         </script>
     </head>
 
